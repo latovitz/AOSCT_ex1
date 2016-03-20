@@ -1,0 +1,16 @@
+{
+  "name": "AOSCT_ex1",
+  "version": "0.0.0",
+  "description": "AOSCT_ex1",
+  "main": "app.js",
+  "author": {
+    "name": "t8035453",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "sha256": "^0.2.0",
+    "stylus": "*"
+  }
+}
