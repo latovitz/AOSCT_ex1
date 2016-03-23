@@ -28,15 +28,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
-
 var auth = express.basicAuth(function (user, pass) {
     return (sha256(user) == "b1c3e21e21393b05010869358c887559e3fe2b21596c2dc7d510e195720e8870" && 
         sha256(pass) == "2428a825137feaaa2c45ad50f3d1fd4d7bb776eb63f989d712c7d510025abd88");
 });
 
-app.get('/', auth, routes.index);
+app.get('/', auth, routes.upload);
 app.get('/about', auth, routes.about);
 app.get('/contact', auth, routes.contact);
+
+//app.post('/', auth, routes.mail);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
