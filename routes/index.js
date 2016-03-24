@@ -4,8 +4,8 @@
  */
 
 exports.index = function (req, res) {
-    res.render('index', { title: 'Express', year: new Date().getFullYear() });
     console.log("loaded index");
+    res.render('index', { title: 'Express', year: new Date().getFullYear() });
 };
 
 exports.upload = function (req, res) {
