@@ -7,6 +7,6 @@ function validateSubmit()
     }
     
     alert("File Uploaded!");
-    location.reload();
+    //location.reload();
     return true;
 }
