@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "connect-busboy": "0.0.2",
-    "express": "3.4.4",
+    "express": "^3.4.4",
     "jade": "*",
+    "multer": "^1.1.0",
+    "nodemailer": "^2.3.0",
     "sha256": "^0.2.0",
     "stylus": "*"
   }

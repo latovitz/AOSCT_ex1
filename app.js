@@ -8,7 +8,8 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var sha256 = require('sha256');
-var busboy = require('connect-busboy');
+var multer = require('multer');
+var nodemailer = require('nodemailer');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + '/public/uploads' }));
 
 // development only
 if ('development' == app.get('env')) {
@@ -35,22 +37,47 @@ var auth = express.basicAuth(function (user, pass) {
 });
 
 app.get('/', auth, routes.upload);
-app.get('/about', auth, routes.about);
-app.get('/contact', auth, routes.contact);
-app.use(busboy());
 
+var storage = multer.diskStorage({
+    destination: function (req, file, cb){
+        cb(null, 'public/uploads/');
+    },
+    filename: function (req, file, cb){
+        cb(null, file.originalname + '-' + Date.now());
+    }
+});
 
-app.post('/upload', auth, function (req, res) {
-    var fstream;
-    req.pipe(req.busboy);
-    req.busboy.on('file', function (fieldname, file, filename) {
-        console.log("Uploading: " + filename);
-        fstream = fs.createWriteStream(__dirname + '../public/uploads' + filename);
-        file.pipe(fstream);
-        fstream.on('close', function () {
-            res.redirect('back');
-        });
+var upload = multer({ storage: storage });
+
+app.post('/upload', auth, upload.single('uploadedFile'), function (req, res) {
+    console.log("SAVING - FILE");
+    console.log(req.file);
+    
+    // create reusable transporter object using the default SMTP transport
+    var transporter = nodemailer.createTransport('smtps://aosct1%40gmail.com:AOSCTAOSCT@smtp.gmail.com');
+        
+    // setup e-mail data with unicode symbols
+    var mailOptions = {
+        from: '"Or Lato 👥" <aosct1@gmail..com>', // sender address
+        to: '<'+req.param("email")+'>', // list of receivers
+        subject: 'Hello, File 4 U ✔', // Subject line
+        text: 'Hey There 🐴', // plaintext body
+        attachments: [
+            {
+                filename: req.file.originalname,
+                path: req.file.path
+            }
+        ]
+    };
+        
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
     });
+
 });
 
 http.createServer(app).listen(app.get('port'), function () {

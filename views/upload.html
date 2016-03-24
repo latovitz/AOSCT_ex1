@@ -13,13 +13,13 @@
   <body>
 
     
-<form method="post", action="/upload" enctype="multipart/form-data">
+<form method="post", action="/upload" enctype="multipart/form-data" onsubmit="validateSubmit();">
   <header>Send a File!</header>
   <label>Recipient Mail *</label>
-  <input id="email"/>
+  <input type="email" id="email" name="email"/>
   <div class="help">A proper mail address</div>
   <label>Choose a File</label>
-  <input type="file" name="uploadedFile"/>
+  <input type="file" name="uploadedFile" id="uploadedFile"/>
   <button type="submit">Send</button>
 </form>
 
