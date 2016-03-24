@@ -8,6 +8,6 @@ function validateSubmit()
     }
     
     alert("File Uploaded!");
-    //location.reload();
+    window.location.reload();
     return true;
 }
