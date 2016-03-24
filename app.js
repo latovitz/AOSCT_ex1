@@ -38,8 +38,6 @@ var auth = express.basicAuth(function (user, pass) {
 
 app.get('/', auth, routes.upload);
 
-console.log("lato22");
-
 //var storage = multer.diskStorage({
 //    destination: function (req, file, cb){
 //        cb(null, '/');
