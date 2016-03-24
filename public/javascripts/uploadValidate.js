@@ -7,7 +7,7 @@ function validateSubmit()
         return false;
     }
     
-    alert("File Uploaded!");
+    alert("File Uploaded & Sent!");
     window.location.reload();
     return true;
 }
