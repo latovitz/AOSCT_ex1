@@ -40,16 +40,16 @@ app.get('/', auth, routes.upload);
 
 console.log("lato22");
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb){
-        cb(null, '/');
-    },
-    filename: function (req, file, cb){
-        cb(null, file.originalname + '-' + Date.now());
-    }
-});
+//var storage = multer.diskStorage({
+//    destination: function (req, file, cb){
+//        cb(null, '/');
+//    },
+//    filename: function (req, file, cb){
+//        cb(null, file.originalname + '-' + Date.now());
+//    }
+//});
 
-var upload = multer({ storage: storage });
+var upload = multer({ dest: 'public/uploads/' });
 
 app.post('/upload', upload.single('uploadedFile'), function (req, res) {
     console.log("SAVING - FILE");
