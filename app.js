@@ -33,7 +33,7 @@ var auth = express.basicAuth(function (user, pass) {
         sha256(pass) == "2428a825137feaaa2c45ad50f3d1fd4d7bb776eb63f989d712c7d510025abd88");
 });
 
-app.get('/', auth, routes.index);
+app.get('/', auth, routes.upload);
 app.get('/about', auth, routes.about);
 app.get('/contact', auth, routes.contact);
 
