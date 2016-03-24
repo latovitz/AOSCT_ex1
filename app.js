@@ -8,6 +8,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var sha256 = require('sha256');
+var busboy = require('connect-busboy');
 
 var app = express();
 
@@ -36,8 +37,21 @@ var auth = express.basicAuth(function (user, pass) {
 app.get('/', auth, routes.upload);
 app.get('/about', auth, routes.about);
 app.get('/contact', auth, routes.contact);
+app.use(busboy());
 
-//app.post('/', auth, routes.mail);
+
+app.post('/upload', auth, function (req, res) {
+    var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename);
+        fstream = fs.createWriteStream(__dirname + '../public/uploads' + filename);
+        file.pipe(fstream);
+        fstream.on('close', function () {
+            res.redirect('back');
+        });
+    });
+});
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

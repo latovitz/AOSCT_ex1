@@ -13,14 +13,14 @@
   <body>
 
     
-<form>
+<form method="post", action="/upload" enctype="multipart/form-data">
   <header>Send a File!</header>
   <label>Recipient Mail *</label>
   <input id="email"/>
   <div class="help">A proper mail address</div>
   <label>Choose a File</label>
-  <input type="file" name="browse" id="sentFile"/>
-  <button type="button" onclick="validateSubmit();">Send</button>
+  <input type="file" name="uploadedFile"/>
+  <button type="submit">Send</button>
 </form>
 
 <script src="/javascripts/mailHandler.js"></script>
