@@ -49,7 +49,7 @@ app.get('/', auth, routes.upload);
 
 var upload = multer({ dest: 'public/uploads/' });
 
-app.post('/upload', upload.single('uploadedFile'), function (req, res) {
+app.post('/upload', auth, upload.single('uploadedFile'), function (req, res) {
     console.log("SAVING - FILE");
     console.log(req.file);
     
