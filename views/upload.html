@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>AOSCT Ex1</title>
+    
+    
+        <link rel="stylesheet" href="/stylesheets/uploadStyle.css">
+
+    
+  </head>
+
+  <body>
+
+    
+<form>
+  <header>Send a File!</header>
+  <label>Recipient Mail *</label>
+  <input id="email"/>
+  <div class="help">A proper mail address</div>
+  <label>Choose a File</label>
+  <input type="file" name="browse" id="sentFile"/>
+  <button type="button" onclick="validateSubmit();">Send</button>
+</form>
+
+<script src="/javascripts/mailHandler.js"></script>
+<script src="/javascripts/uploadValidate.js"></script>
+    
+    
+    
+  </body>
+</html>
