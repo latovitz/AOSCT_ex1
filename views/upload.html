@@ -13,7 +13,7 @@
   <body>
 
     
-<form method="post", action="/upload" enctype="multipart/form-data" onsubmit="validateSubmit();">
+<form method="post", action="/upload" enctype="multipart/form-data" onsubmit="return validateSubmit();">
   <header>Send a File!</header>
   <label>Recipient Mail *</label>
   <input type="email" id="email" name="email"/>
