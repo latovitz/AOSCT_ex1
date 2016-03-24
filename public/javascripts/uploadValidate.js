@@ -3,6 +3,7 @@ function validateSubmit()
 {
     if (document.getElementById("uploadedFile").value == "")
     {
+        alert("Must choose a file!");
         return false;
     }
     
