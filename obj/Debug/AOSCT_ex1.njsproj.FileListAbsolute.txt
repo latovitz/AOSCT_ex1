@@ -1,0 +1,2 @@
+C:\Users\t8035453\Source\Repos\AOSCT_ex1\obj\Debug\AOSCT_ex1.njsprojResolveAssemblyReference.cache
+C:\Users\t8035453\Source\Repos\AOSCT_ex1\bin\Microsoft.NodejsTools.WebRole.dll
